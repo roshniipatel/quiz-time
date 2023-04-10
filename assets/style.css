@@ -1,0 +1,45 @@
+:root {
+  background-color: aliceblue; 
+}
+
+header {
+  color: cadetblue;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.title-page {
+  color: cadetblue;
+  margin: 0;
+  padding: 0;
+  padding-top: 20px;
+  text-align: center;
+  font-size: large;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-left: 25px;
+  font-style: italic;
+  font-size: 25px;
+  box-shadow: inset 10px 10px 40px white;
+  border: 2px solid cadetblue;
+  color: cadetblue;
+  text-align: center;
+  position: relative;
+  margin: auto;
+}
+
+.button:hover {
+  cursor: pointer;
+  box-shadow: 0 1 1 0 cadetblue;
+}
