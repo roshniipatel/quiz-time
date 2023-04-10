@@ -16,9 +16,25 @@ header {
   text-align: left;
 } */
 
+.choice-container {
+  /* display: flex; */
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  padding-top: 0px;
+  width: 100%;
+  font-size: 1.8rem;
+  border: 2px solid cadetblue;
+  background-color: azure;
+  overflow: hidden;
+}
+
+.hide {
+  display: none;
+}
+
 .container {
   width: 100vw;
-  height: 100vw;
+  height: 50vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,6 +53,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* width: 100%; */
 }
 
 .button {

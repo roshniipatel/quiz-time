@@ -1,0 +1,11 @@
+.choice-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  padding-top: 0px;
+  width: 100%;
+  font-size: 1.8rem;
+  border: 2px solid cadetblue;
+  background-color: azure;
+  overflow: hidden;
+}
