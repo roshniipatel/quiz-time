@@ -6,25 +6,40 @@ var currentquestion = 0
 
 var questions = [
   {
-    question: 'test question1', 
-    choices: ['choice1', 'choice2', 'choice3', 'choice4'],
-    answer: 'choice2'
+    question: 'How many seasons does friends have?',
+    choices: ['12', '10', '8', 'I have never watched this show'],
+    answer: '10'
   },
-   {
-    question: 'test question2', 
-    choices: ['choice1a', 'choice2a', 'choice3a', 'choice4a'],
-    answer: 'choice3a'
+  {
+    question: 'What dessert does Rachel make on Thanksgiving that turns out totally disgusting?',
+    choices: ['Chocolate cake', 'Trifle', 'Pumpkin Pie', 'How would I know?'],
+    answer: 'Trifle'
   },
-   {
-    question: 'test question3', 
-    choices: ['choice1b', 'choice2b', 'choice3b', 'choice4b'],
-    answer: 'choice1b'
+  {
+    question: 'How many times did Ross get divorced?',
+    choices: ['One', 'Two', 'Three', 'I have no idea'],
+    answer: 'Three'
+  },
+  {
+    question: 'What city is Friends set in?',
+    choices: ['California', 'New York', 'Houston', 'Stop asking me please'],
+    answer: 'New York'
+  },
+  {
+    question: "What is the name of Phoebe's twin sister?",
+    choices: ['Ursula', 'Mimi', 'Shelby', 'I am giving you the side eye right now'],
+    answer: 'Ursula'
+  },
+  {
+    question: "Joey doesn't share what?",
+    choices: ['Food', 'Friends','Drinks', 'I do not know man'],
+    answer: 'Food'
   }
 ]
 
-function checkanswer (){
+function checkanswer() {
   console.log(this.dataset.value);
-  if(this.dataset.value === questions[currentquestion].answer){
+  if (this.dataset.value === questions[currentquestion].answer) {
     currentquestion++
     showquestion()
   }
@@ -47,7 +62,7 @@ function showquestion() {
   }
 }
 
-startbutton.addEventListener('click', function() {
+startbutton.addEventListener('click', function () {
   homediv.setAttribute('class', 'hide');
   quizdiv.classList.remove('hide');
   quizdiv.classList.add('flex');

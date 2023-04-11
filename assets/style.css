@@ -23,7 +23,7 @@ header {
   padding-top: 0px;
   width: 100%;
   font-size: 1.8rem;
-  border: 2px solid cadetblue;
+  border: 2px solid cornflowerblue;
   background-color: azure;
   overflow: hidden;
 }
@@ -38,7 +38,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: cadetblue;
+  color: cornflowerblue;
   padding-top: 50px;
   text-align: center;
   font-size: large;
@@ -66,8 +66,8 @@ h1 {
   font-style: italic;
   font-size: 25px;
   box-shadow: inset 10px 10px 40px white;
-  border: 1.5px solid cadetblue;
-  color: cadetblue;
+  border: 1.5px solid cornflowerblue;
+  color: cornflowerblue;
   text-decoration: none;
   margin: auto;
 }
@@ -80,5 +80,5 @@ h1 {
 
 .button:hover {
   cursor: pointer;
-  box-shadow: cadetblue;
+  box-shadow: cornflowerblue;
 }
