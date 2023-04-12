@@ -1,8 +1,8 @@
-var startbutton = document.querySelector('#button-2');
-var homediv = document.querySelector('#home')
-var quizdiv = document.querySelector('#quiz')
+var startButton = document.querySelector('#button-2');
+var homeDiv = document.querySelector('#home')
+var quizDiv = document.querySelector('#quiz')
 var questionEl = document.querySelector('#question')
-var currentquestion = 0
+var currentQuestion = 0
 
 var questions = [
   {
@@ -31,40 +31,46 @@ var questions = [
     answer: 'Ursula'
   },
   {
-    question: "Joey doesn't share what?",
+    question: "Joey doesn't share his what?",
     choices: ['Food', 'Friends','Drinks', 'I do not know man'],
     answer: 'Food'
   }
 ]
 
-function checkanswer() {
+function checkAnswer() {
   console.log(this.dataset.value);
-  if (this.dataset.value === questions[currentquestion].answer) {
-    currentquestion++
-    showquestion()
+  if (this.dataset.value === questions[currentQuestion].answer) {
+    currentQuestion++
+    showQuestion()
+  }
+
+  else {
+    currentQuestion++
+    showQuestion()
   }
 }
-function showquestion() {
-  questionEl.textContent = questions[currentquestion].question
-  for (let index = 0; index < questions[currentquestion].choices.length; index++) {
+
+function showQuestion() {
+  questionEl.textContent = questions[currentQuestion].question
+  for (let index = 0; index < questions[currentQuestion].choices.length; index++) {
     var div = document.createElement('div')
     var p2 = document.createElement('p2')
 
     div.classList.add('choice-container')
     p2.classList.add('choice-text')
 
-    p2.textContent = questions[currentquestion].choices[index]
-    p2.setAttribute('data-value', questions[currentquestion].choices[index])
-    p2.addEventListener('click', checkanswer)
+    p2.textContent = questions[currentQuestion].choices[index]
+    p2.setAttribute('data-value', questions[currentQuestion].choices[index])
+    p2.addEventListener('click', checkAnswer)
 
     questionEl.appendChild(div)
     div.appendChild(p2)
   }
 }
 
-startbutton.addEventListener('click', function () {
-  homediv.setAttribute('class', 'hide');
-  quizdiv.classList.remove('hide');
-  quizdiv.classList.add('flex');
-  showquestion();
+startButton.addEventListener('click', function () {
+  homeDiv.setAttribute('class', 'hide');
+  quizDiv.classList.remove('hide');
+  quizDiv.classList.add('flex');
+  showQuestion();
 })
