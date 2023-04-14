@@ -10,40 +10,30 @@
 </head>
 
 <body>
-  <!-- <header>
-        <img class="bg-image" src="./assets/images/bg-final.jpeg" alt="friends-bg" />
-
-  </header> -->
-  <div class="container">
-    <div id="home" class="flex">
+  <main class="container">
+    <section id="home" class="flex">
       <h1>Strap on, it's go time!</h1>
-        <button class="button" id="button-2">Start</button>
+      <button class="button" id="button-2">Start</button>
+    </section>
 
-    </div>
-    <div id="quiz" class="hide">
+    <section id="quiz" class="hide">
       <h2 id="question">What is the answer to this question?</h2>
-      <!-- <div class="choice-container"> -->
-        <!-- <p class="choice-prefix">A</p>
-        <p class="choice-text">Choice 1</p>
-      </div>
-      <div class="choice-container">
-        <p class="choice-prefix">B</p>
-        <p class="choice-text">Choice 2</p>
-      </div>
-      <div class="choice-container">
-        <p class="choice-prefix">C</p>
-        <p class="choice-text">Choice 3</p>
-      </div>
-      <div class="choice-container">
-        <p class="choice-prefix">D</p>
-        <p class="choice-text">Choice 4</p> -->
-      <!-- </div> -->
+      <a class="button" id="button" href="highscore.html">High Score!</a>
+    </section>
 
-      <a class="button" id ="button" href="highscore.html">High Score!</a>
+    <section>
+      <h2> Timer <span id="timer">  </span></h2>
+    </section>
 
-    </div>
-  </div>
+    <section class="hide" id="last-screen">
+      <h2>Quiz Complete!</h2>
+      <p>FINAL SCORE: <span id="final-score"></span></p>
+      <p>Enter Initials: <input type="text" id="initials" /></p>
+      <button id="submit">submit</button>
+    </section>
+  </main>
   <script src="./assets/script.js"></script>
+  <script src="./assets/score.js"></script>
 </body>
 
 </html>
