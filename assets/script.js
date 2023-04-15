@@ -8,9 +8,9 @@ var lastDiv = document.querySelector('#last-screen');
 var showResults = document.querySelector('#final-score');
 
 var correctAnswers = 0;
-var currentQuestion = 0;
 var timeLeft = 60;
 var questionIndex = 0;
+var endInterval;
 
 
 var questions = [
@@ -48,125 +48,85 @@ var questions = [
 
 
 function showQuestion() {
-  questionEl.textContent = questions[currentQuestion].question;
-  for (let index = 0; index < questions[currentQuestion].choices.length; index++) {
+  if (questionIndex >= questions.length) {
+    endQuiz();
+    return;
+  } 
+
+  questionEl.textContent = questions[questionIndex].question;
+  for (let index = 0; index < questions[questionIndex].choices.length; index++) {
     var div = document.createElement('div');
     var p2 = document.createElement('p2');
 
     div.classList.add('choice-container');
     p2.classList.add('choice-text');
 
-    p2.textContent = questions[currentQuestion].choices[index];
-    p2.setAttribute('data-value', questions[currentQuestion].choices[index]);
+    p2.textContent = questions[questionIndex].choices[index];
+    p2.setAttribute('data-value', questions[questionIndex].choices[index]);
     p2.addEventListener('click', checkAnswer);
 
     questionEl.appendChild(div);
     div.appendChild(p2);
   }
-
-  if (questionIndex === currentQuestion.length) {
-    endQuiz();
-  } 
 }
 
 function checkAnswer() {
-
-  console.log(this.dataset.value);
-  if (this.dataset.value === questions[currentQuestion].correctAnswer) {
-    currentQuestion++
-    showQuestion()
-  } else if (this.dataset.value != questions[currentQuestion].correctAnswer) {
-    currentQuestion++
-    showQuestion();
+  console.log(this.dataset.value, questionIndex, questions[questionIndex].correctAnswer);
+ 
+  if (this.dataset.value === questions[questionIndex].correctAnswer) {
+    correctAnswers++
+    console.log('correct answer', correctAnswers);
   } else {
-    endQuiz();
+    console.log('wrong answer');
+    timeLeft-=10;
   }
 
+  questionIndex++ 
+  showQuestion()
+}
 
-  if (questionIndex === currentQuestion.length) {
-    endQuiz();
-  } else {
-    showQuestion();
-  }
+function endQuiz() {
+  clearInterval(endInterval);
+  quizDiv.setAttribute('class', 'hide');
+  lastDiv.removeAttribute('class', 'hide');
+
+  showResults.innerHTML = correctAnswers;
 }
 
 
 startButton.addEventListener('click', function () {
+  correctAnswers = 0;
+  timeLeft = 60;
+  questionIndex = 0;
+
   homeDiv.setAttribute('class', 'hide');
   lastDiv.setAttribute('class', 'hide');
   quizDiv.classList.remove('hide');
   quizDiv.classList.add('flex');
   showQuestion();
+
+  endInterval = setInterval(function () {
+    timeLeft--;
+    // timeLeft = timeLeft-1
+
+    if (timeLeft <= 0) {
+      timeLeft = 0;
+      clearInterval(endInterval);
+      endQuiz();
+    }
+
+    document.getElementById('timer').innerHTML = timeLeft;
+  }, 1000)
 })
 
-var endInterval = setInterval(function() {
-  // console.log("dog");
-  timeLeft--;
-  // timeLeft = timeLeft-1
-  
-  if (timeLeft === 0) {
-    clearInterval(endInterval);
-  } 
+submitButton.addEventListener('click', function () {
 
-  document.getElementById('timer').innerHTML = timeLeft;
-}, 1000)
+  lastDiv.setAttribute('class', 'hide');
+  homeDiv.classList.remove('hide');
 
+  document.getElementById('timer').innerHTML = 'Timer';
 
-
-
-
-
-
-
-// function VerifyAnswer(answer) {
-//   if (answer === questions[currentQuestion].correctAnswer) {
-//     currentQuestion++;
-//     score++;
-
-//     if (currentQuestion < questions.length) {
-//       showQuestion();
-//     }
-//   }
-
-//   else {
-//     timeLeft = parseInt(showResults.innerText);
-//     timeLeft -= 10;
-//     timeLeft.innerText = timeLeft;
-//   }
-
-//   if (score === 5) {
-//     var collectUserName = prompt('Your score is: [ ' + timeLeft + ' ] Please enter your initials in the box below.')
-//     location.href = './highscores.html'
-//   }
-// }
-
-
-
-
-// function endQuiz () {
-//   clearInterval(endInterval);
-
-//   var lastDiv = document.getElementById('last-screen');
-//   lastDiv.removeAttribute('class', 'hide');
-
-//   // make questions go away
-//   questionEl.setAttribute('class', 'hide');
-
-//   // show final score
-//   var finalScoreEl = document.getElementById('final-score');
-//   finalScoreEl.textContent = clearInterval;
-// }
-
-
-
-// submitButton.addEventListener('click', function () {
-//   quizDiv.setAttribute('class', 'hide-2');
-//   lastDiv.classList.remove('hide-2');
-//   lastDiv.classList.add('hide');
-//   showResults();
-// })
-
-
+})
 
 
 
@@ -211,48 +171,3 @@ var endInterval = setInterval(function() {
 // When all questions answered display a complete button(show form to enter initals an record score) store score in local storage
 // redirect to highscores page read scores from local storage append to 
 
-
-//  Timer
-// var timeLeft = 90;
-// setInterval(timeTick, 1000);
-// function timeTick(){
-//     timeLeft--;
-//     timer.text = timeLeft
-
-//     if(timeLeft <=0){
-//         endQuiz();
-//     }
-// }
-
-
-
-
-
-// var count = 0
-
-
-// const maxQuestions = questions.length;
-
-// startTimer = (seconds) => {
-//   counter = seconds;
-
-//   const interval = setInterval(() => {
-//     counter--;
-//     timerText.textContent = counter;
-
-//     if (counter == 0) {
-//       clearInterval(interval);
-//       setTimeout(() => {
-//         return window.location.assign('/Quiz/../end2.html');
-//       }, 1000);
-//     };
-//   }, 1000);
-// };
-
-// startGame = () => {
-//   questionCounter = 0;
-//   score = 0;
-//   availableQuestions = [...questions];
-//   startTimer(60);
-//   getNewQuestion();
-// };
