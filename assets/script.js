@@ -8,7 +8,7 @@ var showResults = document.querySelector('#final-score');
 
 var correctAnswers = 0;
 var currentQuestion = 0;
-var timeLeft = 5;
+var timeLeft = 60;
 
 
 var questions = [
@@ -84,27 +84,35 @@ startButton.addEventListener('click', function () {
 })
 
 var endInterval = setInterval(function() {
-  console.log("dog");
+  // console.log("dog");
   timeLeft--;
   // timeLeft = timeLeft-1
   if (timeLeft === 0) {
     clearInterval(endInterval);
-    
+
   } 
 
   document.getElementById("timer").innerHTML = timeLeft;
 }, 1000)
 
 
-submitButton.addEventListener('click', showResults);
-function showResults() {
-  // Calculate the user's score as a percentage
-  var score = (correctAnswers / questions.length) * 100;
-  // Construct the message to display to the user
-  var message = 'You scored ' + score + '%!';
-  // Update the text content of the showResults element with the message
-  showResults.textContent = message;
-}
+submitButton.addEventListener('click', function () {
+  homeDiv.setAttribute('class', 'hide');
+  quizDiv.classList.remove('hide');
+  quizDiv.classList.add('flex');
+  showQuestion();
+})
+
+
+// submitButton.addEventListener('click', showResults);
+// function showResults() {
+//   // Calculate the user's score as a percentage
+//   var score = (correctAnswers / questions.length) * 100;
+//   // Construct the message to display to the user
+//   var message = 'You scored ' + score + '%!';
+//   // Update the text content of the showResults element with the message
+//   showResults.textContent = message;
+// }
 
 
 
