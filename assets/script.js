@@ -4,11 +4,13 @@ var homeDiv = document.querySelector('#home');
 var quizDiv = document.querySelector('#quiz');
 var questionEl = document.querySelector('#question');
 var submitButton = document.querySelector('#submit');
+var lastDiv = document.querySelector('#last-screen');
 var showResults = document.querySelector('#final-score');
 
 var correctAnswers = 0;
 var currentQuestion = 0;
 var timeLeft = 60;
+var questionIndex = 0;
 
 
 var questions = [
@@ -61,23 +63,37 @@ function showQuestion() {
     questionEl.appendChild(div);
     div.appendChild(p2);
   }
+
+  if (questionIndex === currentQuestion.length) {
+    endQuiz();
+  } 
 }
 
-
 function checkAnswer() {
+
   console.log(this.dataset.value);
   if (this.dataset.value === questions[currentQuestion].correctAnswer) {
     currentQuestion++
     showQuestion()
-  } else {
+  } else if (this.dataset.value != questions[currentQuestion].correctAnswer) {
     currentQuestion++
-    showQuestion()
+    showQuestion();
+  } else {
+    endQuiz();
+  }
+
+
+  if (questionIndex === currentQuestion.length) {
+    endQuiz();
+  } else {
+    showQuestion();
   }
 }
 
 
 startButton.addEventListener('click', function () {
   homeDiv.setAttribute('class', 'hide');
+  lastDiv.setAttribute('class', 'hide');
   quizDiv.classList.remove('hide');
   quizDiv.classList.add('flex');
   showQuestion();
@@ -87,32 +103,68 @@ var endInterval = setInterval(function() {
   // console.log("dog");
   timeLeft--;
   // timeLeft = timeLeft-1
+  
   if (timeLeft === 0) {
     clearInterval(endInterval);
-
   } 
 
-  document.getElementById("timer").innerHTML = timeLeft;
+  document.getElementById('timer').innerHTML = timeLeft;
 }, 1000)
 
 
-submitButton.addEventListener('click', function () {
-  homeDiv.setAttribute('class', 'hide');
-  quizDiv.classList.remove('hide');
-  quizDiv.classList.add('flex');
-  showQuestion();
-})
 
 
-// submitButton.addEventListener('click', showResults);
-// function showResults() {
-//   // Calculate the user's score as a percentage
-//   var score = (correctAnswers / questions.length) * 100;
-//   // Construct the message to display to the user
-//   var message = 'You scored ' + score + '%!';
-//   // Update the text content of the showResults element with the message
-//   showResults.textContent = message;
+
+
+
+
+// function VerifyAnswer(answer) {
+//   if (answer === questions[currentQuestion].correctAnswer) {
+//     currentQuestion++;
+//     score++;
+
+//     if (currentQuestion < questions.length) {
+//       showQuestion();
+//     }
+//   }
+
+//   else {
+//     timeLeft = parseInt(showResults.innerText);
+//     timeLeft -= 10;
+//     timeLeft.innerText = timeLeft;
+//   }
+
+//   if (score === 5) {
+//     var collectUserName = prompt('Your score is: [ ' + timeLeft + ' ] Please enter your initials in the box below.')
+//     location.href = './highscores.html'
+//   }
 // }
+
+
+
+
+// function endQuiz () {
+//   clearInterval(endInterval);
+
+//   var lastDiv = document.getElementById('last-screen');
+//   lastDiv.removeAttribute('class', 'hide');
+
+//   // make questions go away
+//   questionEl.setAttribute('class', 'hide');
+
+//   // show final score
+//   var finalScoreEl = document.getElementById('final-score');
+//   finalScoreEl.textContent = clearInterval;
+// }
+
+
+
+// submitButton.addEventListener('click', function () {
+//   quizDiv.setAttribute('class', 'hide-2');
+//   lastDiv.classList.remove('hide-2');
+//   lastDiv.classList.add('hide');
+//   showResults();
+// })
 
 
 
