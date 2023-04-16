@@ -47,12 +47,15 @@ var questions = [
 ]
 
 
+// displays the questions on screen and if index is greater than questions then ends the quiz
 function showQuestion() {
   if (questionIndex >= questions.length) {
     endQuiz();
     return;
   } 
 
+
+  // created elements for the questions and the choices so it shows
   questionEl.textContent = questions[questionIndex].question;
   for (let index = 0; index < questions[questionIndex].choices.length; index++) {
     var div = document.createElement('div');
@@ -70,7 +73,9 @@ function showQuestion() {
   }
 }
 
+
 function checkAnswer() {
+  //logs the answer chosen and the index as well as the correct answer
   console.log(this.dataset.value, questionIndex, questions[questionIndex].correctAnswer);
  
   if (this.dataset.value === questions[questionIndex].correctAnswer) {
@@ -85,6 +90,8 @@ function checkAnswer() {
   showQuestion()
 }
 
+
+// hides the question screen so that the last screen can be seen
 function endQuiz() {
   clearInterval(endInterval);
   quizDiv.setAttribute('class', 'hide');
@@ -94,17 +101,20 @@ function endQuiz() {
 }
 
 
+// start button resets everything from previous try
 startButton.addEventListener('click', function () {
   correctAnswers = 0;
   timeLeft = 60;
   questionIndex = 0;
 
+  // start button also hides the main and last screen and only shows the questions screen
   homeDiv.setAttribute('class', 'hide');
   lastDiv.setAttribute('class', 'hide');
   quizDiv.classList.remove('hide');
   quizDiv.classList.add('flex');
   showQuestion();
 
+  // how the timer works
   endInterval = setInterval(function () {
     timeLeft--;
     // timeLeft = timeLeft-1
@@ -119,6 +129,8 @@ startButton.addEventListener('click', function () {
   }, 1000)
 })
 
+
+// submit button hides the questions screen and shows the last screen with score and initial input
 submitButton.addEventListener('click', function () {
 
   lastDiv.setAttribute('class', 'hide');
@@ -126,6 +138,16 @@ submitButton.addEventListener('click', function () {
 
   document.getElementById('timer').innerHTML = 'Timer';
 
+  var initials = document.getElementById('initials').value;
+  console.log(initials);
+
+  var highScore = JSON.parse(localStorage.getItem('highScores')) || {};
+  console.log(highScore[initials])
+  if (highScore[initials] == undefined || highScore[initials] < correctAnswers) {
+    highScore[initials] = correctAnswers;
+  } 
+
+  localStorage.setItem('highScores', JSON.stringify(highScore));
 })
 
 
