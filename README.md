@@ -14,7 +14,7 @@ Navigate to the quiz page by clicking the link below and test your knowledge abo
 
 Repository: https://github.com/roshniipatel/quiz-time 
 
-Github Page: 
+Github Page: https://roshniipatel.github.io/quiz-time/
 
 ## Acknowledgements 
 
