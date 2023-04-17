@@ -140,7 +140,7 @@ submitButton.addEventListener('click', function () {
   var initials = document.getElementById('initials').value;
   console.log(initials);
 
-  var highScore = JSON.parse(window.localStorage.getItem('highScores')) || [];
+  var highScore = JSON.parse(localStorage.getItem('highScores')) || [];
 
   var newScore = {
     score: time,
@@ -164,67 +164,5 @@ submitButton.addEventListener('click', function () {
 
 // })
 
-// saveHighScore = (e) => {
 
-//   // prevents from opening up in a new page //
-//   e.preventDefault();
-
-//   var mostRecentScore = localStorage.getItem('mostRecentScore') || 0;
-
-//   const score = {
-//     score: mostRecentScore,
-//     name: initials.value
-//   };
-//   // pushes score into highScore array //
-//   highScore.push(score);
-//   // Will sort array by highest to lowest score //
-//   highScore.sort((a, b) => b.score - a.score)
-//   // Will only keep up to 5 scores //
-//   highScore.splice(5);
-
-//   localStorage.setItem("highScore", JSON.stringify(highScore));
-//   window.location.assign('index.html')
-// };
-
-
-
-
-
-
-
-
-
-
-
-// Code notes
-
-//  question code quiz, questions displayed dynamically
-// when complete score is shown and redirect to highscores history
-
-// function to start the quiz
-// function to display questions and answers(loops, iterators)
-// function to check correct answer
-// end function to stop timer redirect to a new page
-
-// Variables
-// score, questions, question choices, question answers
-    // var score = num, var questions = [{}, {}]
-    // question{ question: "",
-    //          answer: "",
-                // choices:["", "",]
-//              }
-// User is presented with a single question, user chooses an answer from radio buttons, answer is checked if correct 1 point is given score++
-    // Loop through the questions arr to append each question to the page
-    //  var iterator = 0;
-    // for loop that appends choices to the page
-    // questions[0]
-    // questions[0].question
-    // inside a for loop
-    // questions[0].choices[i]
-    // if statement that checks for user input and compares to questions[0].answer if correct score++, iterator++, affect time
-        // validate answer if( $('#radio').is(':checked') ){
-    //  if incorrect subtract from the timer, iterator++
-    // Clear the page, append new question
-// When all questions answered display a complete button(show form to enter initals an record score) store score in local storage
-// redirect to highscores page read scores from local storage append to 
 
