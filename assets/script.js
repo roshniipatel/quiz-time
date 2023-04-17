@@ -132,24 +132,59 @@ startButton.addEventListener('click', function () {
 
 // submit button hides the questions screen and shows the last screen with score and initial input
 submitButton.addEventListener('click', function () {
-
   lastDiv.setAttribute('class', 'hide');
   homeDiv.classList.remove('hide');
 
-  document.getElementById('timer').innerHTML = 'Timer';
+  var time = document.getElementById('timer').innerHTML; 
 
   var initials = document.getElementById('initials').value;
   console.log(initials);
 
-  var highScore = JSON.parse(localStorage.getItem('highScores')) || {};
-  console.log(highScore[initials])
-  if (highScore[initials] == undefined || highScore[initials] < correctAnswers) {
-    highScore[initials] = correctAnswers;
-  } 
+  var highScore = JSON.parse(window.localStorage.getItem('highScores')) || [];
 
+  var newScore = {
+    score: time,
+    initials: initials,
+  };
+  console.log(newScore);
+
+  highScore.push(newScore); 
+
+  // console.log(highScore[initials])
+  // if (highScore[initials] == undefined || highScore[initials] < correctAnswers) {
+  //   highScore[initials] = correctAnswers;
+  // }
+  
   localStorage.setItem('highScores', JSON.stringify(highScore));
-})
 
+  });
+
+  // localStorage.setItem('highScores', JSON.stringify(highScore));
+  // window.location.assign('index.html');
+
+// })
+
+// saveHighScore = (e) => {
+
+//   // prevents from opening up in a new page //
+//   e.preventDefault();
+
+//   var mostRecentScore = localStorage.getItem('mostRecentScore') || 0;
+
+//   const score = {
+//     score: mostRecentScore,
+//     name: initials.value
+//   };
+//   // pushes score into highScore array //
+//   highScore.push(score);
+//   // Will sort array by highest to lowest score //
+//   highScore.sort((a, b) => b.score - a.score)
+//   // Will only keep up to 5 scores //
+//   highScore.splice(5);
+
+//   localStorage.setItem("highScore", JSON.stringify(highScore));
+//   window.location.assign('index.html')
+// };
 
 
 

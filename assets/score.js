@@ -1,11 +1,32 @@
-// var initials = document.getElementById('initials');
-// var submitScore = document.getElementById('submit');
-// var finalScore = document.getElementById('final-score');
+var initials = document.getElementById('initials');
+var submitScore = document.getElementById('submit');
+var finalScore = document.getElementById('final-score');
 // var mostRecentScore = localStorage.getItem('mostRecentScore') || 0;
 
+function printHighScore() {
+  var highScore = JSON.parse(localStorage.getItem("highScores")) || []; 
 
-// var highScore = JSON.parse(localStorage.getItem('highScore')) || [];
+  for (var i = 0; i < highScore.length; i++) {
+    var LiEl = document.createElement('li');
+    console.log(highScore[i]);
+    LiEl.textContent = highScore[i].initials + ' ' + highScore[i].score;
+
+    var olEl = document.getElementById('scoreboard');
+    olEl.appendChild(LiEl);
+  }
+}
+
+printHighScore(); 
+
+// var highScore = JSON.parse(localStorage.getItem("highScores")) || []; 
 // console.log(highScore);
+
+
+// initials.addEventListener('keyup', () => {
+//   // Save button won't be clickable until user initials are typed in //
+//   submitScore.disabled = !initials.value;
+// })
+
 // // console.log(JSON.parse(localStorage.getItem('highScore')));
 
 // // if (!isNaN(mostRecentScore)) { 

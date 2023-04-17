@@ -7,7 +7,7 @@
 .high-score {
   position: absolute;
   font-size: 40px;
-  top: 90px;
+  top: 0px;
   color: mediumpurple;
   padding-top: 100px;
 }
