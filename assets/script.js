@@ -149,20 +149,10 @@ submitButton.addEventListener('click', function () {
   console.log(newScore);
 
   highScore.push(newScore); 
-
-  // console.log(highScore[initials])
-  // if (highScore[initials] == undefined || highScore[initials] < correctAnswers) {
-  //   highScore[initials] = correctAnswers;
-  // }
   
   localStorage.setItem('highScores', JSON.stringify(highScore));
 
   });
-
-  // localStorage.setItem('highScores', JSON.stringify(highScore));
-  // window.location.assign('index.html');
-
-// })
 
 
 
